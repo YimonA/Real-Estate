@@ -116,7 +116,7 @@ const Home = ({properties}) => {
                   
             </div>
             <div className="  basis-5/12 my-10 mx-2 lg:mx-3">
-              <div className=" relative w-fit z-0">
+              <div className=" relative w-fit z-0 lg:h-[90%]">
                 <img
                   src="https://hously-react.vercel.app/static/media/1.bfd273967d5b93df7a02.jpg"
                   alt=""
