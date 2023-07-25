@@ -128,7 +128,7 @@ const Footer = () => {
           <div className=" basis-4/12 flex flex-col lg:flex-row justify-evenly items-start mb-3">
             <div className=" mb-5">
               <p className=" text-white mb-3 text-md font-semibold">Company</p>
-              <ul className=" text-slate-400">
+              <ul className="  text-gray-300">
                 <Link to={"/home"}>
                   <li onClick={scrollYHandler} className=" flex justify-start items-center mb-2 hover:text-[#16a34a]">
                     <IoIosArrowForward className="mr-3" />
