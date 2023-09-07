@@ -26,7 +26,6 @@ const Login = () => {
             <input
               defaultValue={"john@gmail.com"}
               type="text"
-              placeholder="name@example.com"
               className=" px-3 py-2 w-full border-2 mb-3 myBorderColor"
             />
             </div>
@@ -35,8 +34,7 @@ const Login = () => {
             <label className=" font-medium">Password:</label>
             <input
               defaultValue={"john123"}
-              type="text"
-              placeholder="Password"
+              type="password"
               className=" px-3 py-2 w-full border-2 mb-3 myBorderColor"
             />
             </div>
