@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
 import { BsChevronDown } from "react-icons/bs";
@@ -6,7 +6,7 @@ import { BsChevronUp } from "react-icons/bs";
 import { BsFillSunFill } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
-import {BiUpArrowAlt} from "react-icons/bi"
+import { BiUpArrowAlt } from "react-icons/bi";
 
 import { Link, NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -18,11 +18,28 @@ const Navbar = () => {
   const [showAni, setShowAni] = useState();
   const [showMenu, setShowMenu] = useState(false);
   const [closeMenu, setCloseMenu] = useState(false);
-  const [uparrow,setUparrow]=useState();
-
+  const [uparrow, setUparrow] = useState();
+  const dropDownRef = useRef(null);
+  const dropDownRefMini = useRef(null);
   const [theme, setTheme] = useState("light");
   const dispatch = useDispatch();
+  const navLinksOne = [
+    { url: "/home", name: "Home" },
+    { url: "/buy", name: "Buy" },
+    { url: "/sell", name: "Sell" },
+  ];
+  const navLinksTwo = [
+    { url: "/aboutus", name: "About Us" },
+    { url: "/contact", name: "Contact" },
+  ];
+  const navLinksPages = [
+    { url: "/list-sidebar", name: "List Side bar" },
+    { url: "/features", name: "Features" },
+    { url: "/pricing", name: "Pricing" },
+    { url: "/faqs", name: "FAQs" },
+  ];
 
+  const navPages = [];
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -53,19 +70,17 @@ const Navbar = () => {
   };
 
   const changeDark = () => {
-    setTheme( "dark");
+    setTheme("dark");
     const Theme = JSON.parse(Cookies.get("theme"));
-    console.log('changedark',Theme);
+    console.log("changedark", Theme);
     changeAni();
-
   };
 
   const changeLight = () => {
-    setTheme("light" );
+    setTheme("light");
     const Theme = JSON.parse(Cookies.get("theme"));
-    console.log('changelight',Theme)
+    console.log("changelight", Theme);
     changeAni();
-
   };
 
   /*** 90Yoffset -> change bg color ***/
@@ -76,20 +91,42 @@ const Navbar = () => {
     } else {
       setColor(false);
     }
-    if(window.scrollY>1020){
+    if (window.scrollY > 1020) {
       setUparrow(true);
-    }else{
+    } else {
       setUparrow(false);
     }
   };
   window.addEventListener("scroll", colorHandler);
 
-  const navActive = 'text-green-600 font-bold dark:text-green-600'
-  const navNormal = 'text-black font-medium dark:text-white'
+  const navActive = "text-green-600 font-bold dark:text-green-600";
+  const navNormal = "text-black font-medium dark:text-white";
 
-  const scrollYHandler=()=>{
-    window.scroll(0,0);
+  const scrollYHandler = () => {
+    window.scroll(0, 0);
+  };
+
+  function handleClickOutside(event) {
+    // If the clicked element has the data-toggle attribute, return early
+    if (event.target.closest("[data-toggle]")) {
+      return;
+    }
+
+    if (!dropDownRef.current?.contains(event.target)) {
+      setShowDeskMenu(false);
+    }
+    if (!dropDownRefMini.current?.contains(event.target)) {
+      setShowMenu(false);
+      setCloseMenu(false);
+    }
   }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div>
@@ -101,7 +138,9 @@ const Navbar = () => {
               : "container-fluid w-full myGlassBg dark:bg-[#0F262E] fixed top-0  h-[70px] z-50"
           }`}
         >
-          <div className={`container-2xl lg:mx-auto lg:px-48  py-4 flex justify-between items-center `}>
+          <div
+            className={`container-2xl lg:mx-auto lg:px-48  py-4 flex justify-between items-center `}
+          >
             <div className=" ml-4">
               <Link to={"/home"}>
                 <img
@@ -117,118 +156,90 @@ const Navbar = () => {
                 ></img>
               </Link>
             </div>
-              <ul className="hidden md:flex justify-end items-center mr-5 ">
-                <NavLink to={"/home"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                  <li onClick={scrollYHandler} className=" w-[60px] h-[40px] flex justify-center items-center cursor-pointer">
-                    <span className="fs-[17px] hover:text-[#16a34a]   dark:hover:text-[#16a34a]">
-                      Home
-                    </span>
-                  </li>
-                </NavLink>
-                <NavLink to={"/buy"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                  <li onClick={scrollYHandler} className=" w-[60px] h-[40px] flex justify-center items-center cursor-pointer">
-                    <span className="fs-[17px] hover:text-[#16a34a] dark:hover:text-[#16a34a]">
-                    Buy
-                    </span>
-                  </li>
-                </NavLink>
-                <NavLink to={"/sell"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                  <li onClick={scrollYHandler} className=" w-[60px] h-[40px] flex justify-center items-center cursor-pointer">
-                    <span className="fs-[17px] hover:text-[#16a34a] dark:hover:text-[#16a34a]">
-                    Sell
-                    </span>
-                  </li>
-                </NavLink>
-                {/* <Link to={"/buy"}>
-                  <li onClick={scrollYHandler} className=" w-[60px] h-[40px] flex justify-center items-center mx-3 cursor-pointer">
-                    <span className=" fs-[17px] font-medium dark:text-white dark:hover:text-[#16a34a]  hover:text-[#16a34a]">
-                    Buy
-                    </span>
-                  </li>
-                </Link> */}
-                {/* <Link to={"/sell"}>
-                  <li onClick={scrollYHandler} className=" w-[60px] h-[40px] flex justify-center items-center mx-3 cursor-pointer">
-                    <span className=" fs-[17px] font-medium text-black  dark:text-white dark:hover:text-[#16a34a]  hover:text-[#16a34a]">
-                      Sell
-                    </span>
-                  </li>
-                </Link> */}
-                <li
-                  onClick={() => setShowDeskMenu(!showDeskMenu)}
-                  className=" w-fit h-[40px] flex justify-center items-center mx-3 cursor-pointer relative myliForDropDown"
-                >
-                  <span className=" fs-[17px] font-medium text-black dark:text-white dark:hover:text-[#16a34a] hover:text-[#16a34a]">
-                    Pages
-                  </span>
-                  <BsChevronDown
-                    className=" ml-2 font-extrabold text-black dark:text-white  dark:hover:text-[#16a34a] hover:text-[#16a34a]"
-                    size={"0.8rem"}
-                  />
-                  <div
-                    className={` ${
-                      showDeskMenu ? "" : "hidden"
-                    }  bg-white w-[150px] absolute top-[38px] left-0 shadow-lg p-5 rounded-md dark:bg-[#0F172A] z-50`}
+            {/* desktop menu start */}
+            <ul className="hidden md:flex justify-end items-center mr-5 ">
+              {navLinksOne.map((navLink, index) => {
+                return (
+                  <NavLink
+                    to={navLink.url}
+                    className={({ isActive }) =>
+                      isActive ? navActive : navNormal
+                    }
+                    key={index}
                   >
-                    <ul>
-                      
-                      <NavLink to={"/list-sidebar"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                        <li onClick={scrollYHandler} className="fs-[17px]  dark:hover:text-[#16a34a] hover:text-[#16a34a] mb-2">
-                        List Side bar
-                        </li>
-                      </NavLink>
-                      <NavLink to={"/features"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                        <li onClick={scrollYHandler} className="fs-[17px]  dark:hover:text-[#16a34a] hover:text-[#16a34a] mb-2">
-                        Features
-                        </li>
-                      </NavLink>
-                      <NavLink to={"/pricing"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                        <li onClick={scrollYHandler} className="fs-[17px]  dark:hover:text-[#16a34a] hover:text-[#16a34a] mb-2">
-                        Pricing
-                        </li>
-                      </NavLink>
-                      <NavLink to={"/faqs"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                        <li onClick={scrollYHandler} className="fs-[17px] dark:hover:text-[#16a34a] hover:text-[#16a34a] mb-2">
-                        FAQs
-                        </li>
-                      </NavLink>
-                      {/* <Link to={"/list-sidebar"}>
-                        <li onClick={scrollYHandler} className="fs-[17px] font-medium text-black dark:text-white dark:hover:text-[#16a34a] hover:text-[#16a34a] mb-2">
-                          List Side bar
-                        </li>
-                      </Link> */}
-                      {/* <Link to={"/features"}>
-                        <li onClick={scrollYHandler} className="fs-[17px] font-medium text-black dark:text-white dark:hover:text-[#16a34a] hover:text-[#16a34a] mb-2">
-                          Features
-                        </li>
-                      </Link> */}
-                      {/* <Link to={"/pricing"}>
-                        <li onClick={scrollYHandler} className="fs-[17px] font-medium text-black dark:text-white dark:hover:text-[#16a34a] hover:text-[#16a34a] mb-2">
-                          Pricing
-                        </li>
-                      </Link> */}
-                      {/* <Link to={"/faqs"}>
-                        <li onClick={scrollYHandler} className="fs-[17px] font-medium text-black dark:text-white dark:hover:text-[#16a34a] hover:text-[#16a34a]">
-                          FAQs
-                        </li>
-                      </Link> */}
-                    </ul>
-                  </div>
-                </li>
-                <NavLink to={"/aboutus"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                <li onClick={scrollYHandler} className=" w-fit h-[40px] flex justify-center items-center mx-3 cursor-pointer relative myliForDropDown">
-                  <span className=" fs-[17px] dark:hover:text-[#16a34a] hover:text-[#16a34a]">
-                    About us
-                  </span>
-                </li>
-              </NavLink>
-              <NavLink to={"/contact"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                <li onClick={scrollYHandler} className=" w-[60px] h-[40px] flex justify-center items-center mx-3 cursor-pointer">
-                  <span className=" fs-[17px] dark:hover:text-[#16a34a] hover:text-[#16a34a]">
-                    Contact
-                  </span>
-                </li>
-              </NavLink>
-              </ul>
+                    <li
+                      onClick={scrollYHandler}
+                      className=" p-1 h-[40px] flex justify-center items-center mx-3 cursor-pointer"
+                    >
+                      <span className=" fs-[17px] dark:hover:text-[#16a34a] hover:text-[#16a34a]">
+                        {navLink.name}
+                      </span>
+                    </li>
+                  </NavLink>
+                );
+              })}
+              <li
+                ref={dropDownRef}
+                onClick={() => setShowDeskMenu(!showDeskMenu)}
+                className=" h-[40px] flex justify-center items-center mx-3 cursor-pointer relative myliForDropDown"
+              >
+                <span className=" fs-[17px] font-medium text-black dark:text-white dark:hover:text-[#16a34a] hover:text-[#16a34a]">
+                  Pages
+                </span>
+                <BsChevronDown
+                  className=" ml-2 font-extrabold text-black dark:text-white  dark:hover:text-[#16a34a] hover:text-[#16a34a]"
+                  size={"0.8rem"}
+                />
+                <div
+                  className={` ${
+                    showDeskMenu ? "" : "hidden"
+                  } w-[140px] bg-white py-2 absolute top-[38px] -right-[60%] shadow-lg rounded-md dark:bg-[#0F172A] z-50`}
+                >
+                  <ul>
+                    {navLinksPages.map((navLink, index) => {
+                      return (
+                        <NavLink
+                          to={navLink.url}
+                          className={({ isActive }) =>
+                            isActive ? navActive : navNormal
+                          }
+                          key={index}
+                        >
+                          <li
+                            onClick={scrollYHandler}
+                            className=" p-1 h-[40px] flex justify-center items-center mx-3 cursor-pointer"
+                          >
+                            <span className=" fs-[17px] dark:hover:text-[#16a34a] hover:text-[#16a34a]">
+                              {navLink.name}
+                            </span>
+                          </li>
+                        </NavLink>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </li>
+              {navLinksTwo.map((navLink, index) => {
+                return (
+                  <NavLink
+                    to={navLink.url}
+                    className={({ isActive }) =>
+                      isActive ? navActive : navNormal
+                    }
+                    key={index}
+                  >
+                    <li
+                      onClick={scrollYHandler}
+                      className=" p-1 h-[40px] flex justify-center items-center mx-3 cursor-pointer"
+                    >
+                      <span className=" fs-[17px] dark:hover:text-[#16a34a] hover:text-[#16a34a]">
+                        {navLink.name}
+                      </span>
+                    </li>
+                  </NavLink>
+                );
+              })}
+            </ul>
             {/* Login Icon Section Start*/}
 
             <div className=" flex justify-end items-start">
@@ -242,7 +253,9 @@ const Navbar = () => {
                   Sign up
                 </button>
               </Link>
+              {/* desktop menu end */}
 
+              {/* phone menu start */}
               <div className=" block md:hidden  myliForDropDown">
                 <button
                   onClick={() => setCloseMenu(!closeMenu)}
@@ -260,84 +273,92 @@ const Navbar = () => {
                     />
                   )}
                 </button>
-                <div
+                <div ref={dropDownRefMini}
                   className={` ${
                     closeMenu ? "block" : "hidden"
                   } bg-white absolute top-[68px] right-0 p-5  rounded-md w-[80%] shadow-xl dark:bg-[#0F172A] `}
                 >
                   <ul>
-                  <NavLink to={"/home"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                      <li onClick={scrollYHandler} className="fs-[17px] hover:text-[#16a34a] mb-2">
-                        Home
-                      </li>
-                    </NavLink>
-                    <NavLink to={"/buy"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                      <li onClick={scrollYHandler} className="fs-[17px] hover:text-[#16a34a] mb-2">
-                        Buy
-                      </li>
-                    </NavLink>
-                    <NavLink to={"/sell"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                      <li onClick={scrollYHandler} className="fs-[17px] hover:text-[#16a34a] mb-2">
-                        Sell
-                      </li>
-                    </NavLink>
-                    <NavLink to={"/aboutus"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                      <li onClick={scrollYHandler} className="fs-[17px] hover:text-[#16a34a] mb-2">
-                        About us
-                      </li>
-                    </NavLink>
-                    <div className=" ">
-                      <li className="flex justify-between items-center fs-[17px] font-medium hover:text-[#16a34a] mb-2 text-black dark:text-white">
-                        Pages
-                        {showMenu ? (
+                    {navLinksOne.map((navLink, index) => {
+                      return (
+                        <NavLink
+                          to={navLink.url}
+                          className={({ isActive }) =>
+                            isActive ? navActive : navNormal
+                          }
+                          key={index}
+                        >
+                          <li
+                            onClick={scrollYHandler}
+                            className="fs-[17px] hover:text-[#16a34a] mb-2"
+                          >
+                            {navLink.name}
+                          </li>
+                        </NavLink>
+                      );
+                    })}
+                    <div >
+                      <li onClick={()=>{showMenu? setShowMenu(false) : setShowMenu(true)}} className="flex justify-between items-center fs-[17px] font-medium hover:text-[#16a34a] mb-2 text-black dark:text-white ">
+                        <span>Pages</span>
                           <BsChevronUp
                             onClick={() => setShowMenu(false)}
-                            className="text-black dark:text-white font-medium"
+                            className={`text-black dark:text-white font-medium ${showMenu ? "" :"hidden"}`}
                             size={"1rem"}
                           />
-                        ) : (
                           <BsChevronDown
                             onClick={() => setShowMenu(true)}
-                            className="text-black dark:text-white font-medium"
+                            className={`text-black dark:text-white font-medium ${showMenu ? "hidden" :""}`}
                             size={"1rem"}
                           />
-                        )}
+                        
                       </li>
                       <ul
                         className={`${
                           showMenu ? "block" : "hidden"
                         } bg-white dark:bg-slate-900`}
                       >
-                        <NavLink to={"/list-sidebar"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                          <li onClick={scrollYHandler} className="ml-5 fs-[17px] hover:text-[#16a34a] mb-2">
-                            Listing
-                          </li>
-                        </NavLink>
-                        <NavLink to={"/features"} className={({ isActive })=> (isActive? navActive: navNormal)}>
-                          <li onClick={scrollYHandler} className=" ml-5 fs-[17px] hover:text-[#16a34a] mb-2">
-                            Features
-                          </li>
-                        </NavLink>
-                        <NavLink to={"/pricing" } className={({ isActive })=> (isActive? navActive: navNormal)}>
-                          <li onClick={scrollYHandler} className=" ml-5 fs-[17px] hover:text-[#16a34a] mb-2">
-                            Pricing
-                          </li>
-                        </NavLink>
-                        <NavLink to={"/faqs" } className={({ isActive })=> (isActive? navActive: navNormal)}>
-                          <li onClick={scrollYHandler} className=" ml-5 fs-[17px] hover:text-[#16a34a] mb-2">
-                            FAQs
-                          </li>
-                        </NavLink>
+                        {navLinksPages.map((navLink, index) => {
+                          return (
+                            <NavLink
+                              to={navLink.url}
+                              className={({ isActive }) =>
+                                isActive ? navActive : navNormal
+                              }
+                              key={index}
+                            >
+                              <li
+                                onClick={scrollYHandler}
+                                className="pl-5 fs-[17px] hover:text-[#16a34a] mb-2"
+                              >
+                                {navLink.name}
+                              </li>
+                            </NavLink>
+                          );
+                        })}
                       </ul>
                     </div>
-                    <NavLink to={"/contact" } className={({ isActive })=> (isActive? navActive: navNormal)}>
-                      <li onClick={scrollYHandler} className="fs-[17px] hover:text-[#16a34a]">
-                        Contact
-                      </li>
-                    </NavLink>
+                    {navLinksTwo.map((navLink, index) => {
+                      return (
+                        <NavLink
+                          to={navLink.url}
+                          className={({ isActive }) =>
+                            isActive ? navActive : navNormal
+                          }
+                          key={index}
+                        >
+                          <li
+                            onClick={scrollYHandler}
+                            className="fs-[17px] hover:text-[#16a34a] mb-2"
+                          >
+                            {navLink.name}
+                          </li>
+                        </NavLink>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
+              {/* phone menu end */}
             </div>
             {/* Login Icon Section End*/}
           </div>
@@ -346,29 +367,31 @@ const Navbar = () => {
         {/* dark mode Section Start*/}
         <div className=" w-14 h-8 overflow-hidden fixed top-[40%] left-0 z-50  flex flex-col justify-center items-center bg-slate-900 dark:bg-white rounded-2xl rotate-90">
           <div className="w-14 h-7 flex justify-center items-center	relative">
-          <button
+            <button
               onClick={changeMood}
               className={` ${
                 showAni == true ? "myDarkBtnMoveUp" : "myDarkBtnMoveDown"
               } absolute top-0 left-0 w-7 h-7 rounded-full z-50 dark:bg-slate-900 bg-white `}
             ></button>
-            
-            <p onClick={changeDark} className="w-7 h-7 p-1 border-0 text-yellow-500 ">
+
+            <p
+              onClick={changeDark}
+              className="w-7 h-7 p-1 border-0 text-yellow-500 "
+            >
               <BsMoon size={"1.3rem"} />
             </p>
-            <p onClick={changeLight} className=" w-7 h-7 p-1 border-0 text-yellow-500">
+            <p
+              onClick={changeLight}
+              className=" w-7 h-7 p-1 border-0 text-yellow-500"
+            >
               <BsFillSunFill size={"1.3rem"} />
             </p>
-            
-            
-                      </div>
-
+          </div>
         </div>
         {/* dark mode Section End*/}
 
         {/* Up-arrow Section Start*/}
-
-        <div className={`${uparrow? "block": "hidden"}`}>
+        <div className={`${uparrow ? "block" : "hidden"}`}>
           <a href="#mystart" className="duration-[1500ms]	">
             <button className=" fixed right-3 bottom-[5%] w-10 h-10 p-2 fs-[17px] leading-[24px] border-0 text-white bg-[#16a34a] hover:bg-[#138a3f] rounded-full z-50">
               <BiUpArrowAlt size={"1.5rem"} />

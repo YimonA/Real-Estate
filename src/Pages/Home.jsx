@@ -11,34 +11,11 @@ import HowItWorks from "../Components/HowItWorks";
 import FeatureProperties from "../Components/FeatureProperties";
 import GetInTouch from "../Components/GetInTouch";
 
-const Home = ({properties}) => {
-  const [showBuyBtnColor, setShowBuyBtnColor] = useState(true);
-  const [showSellBtnColor, setShowSellBtnColor] = useState(false);
-  const [showRentBtnColor, setShowRentBtnColor] = useState(false);
-
+const Home = ({ properties }) => {
+  const tabName = ["Buy", "Sell", "Rent"];
+  const [tab, setTab] = useState("Buy");
   const [showHomeIframe, setShowHomeIframe] = useState(false);
   const [showIframe, setShowIframe] = useState(false);
-
-  const BuyHandler = (e) => {
-    e.preventDefault();
-    setShowBuyBtnColor(true);
-    setShowSellBtnColor(false);
-    setShowRentBtnColor(false);
-  };
-
-  const SellHandler = (e) => {
-    e.preventDefault();
-    setShowSellBtnColor(true);
-    setShowBuyBtnColor(false);
-    setShowRentBtnColor(false);
-  };
-
-  const RentHandler = (e) => {
-    e.preventDefault();
-    setShowRentBtnColor(true);
-    setShowBuyBtnColor(false);
-    setShowSellBtnColor(false);
-  };
 
   return (
     <>
@@ -62,39 +39,23 @@ const Home = ({properties}) => {
                   without any agent or commisions.
                 </p>
               </div>
-              
+
               <div className="px-2">
                 <div className="w-[100%] bg-white dark:bg-slate-900 dark:text-white text-black  rounded-t-xl px-6 py-4 h-fit flex justify-center lg:justify-start items-center lg:w-fit">
-                  <button
-                    onClick={BuyHandler}
-                    className={` w-[80px] h-[40px] fs-[17px] leading-[24px] rounded-lg ${
-                      showBuyBtnColor
-                        ? "bg-[#16a34a] text-white"
-                        : " hover:text-[#16a34a] "
-                    }`}
-                  >
-                    Buy
-                  </button>
-                  <button
-                    onClick={SellHandler}
-                    className={` w-[80px] h-[40px] fs-[17px] leading-[24px] rounded-lg   ${
-                      showSellBtnColor
-                        ? "bg-[#16a34a] text-white"
-                        : "hover:text-[#16a34a]"
-                    }`}
-                  >
-                    Sell
-                  </button>
-                  <button
-                    onClick={RentHandler}
-                    className={` w-[80px] h-[40px] fs-[17px] leading-[24px] rounded-lg ${
-                      showRentBtnColor
-                        ? "bg-[#16a34a] text-white"
-                        : " hover:text-[#16a34a] "
-                    }`}
-                  >
-                    Rent
-                  </button>
+                  {tabName.map((item, index) => {
+                    return (
+                      <button
+                        onClick={()=>setTab(item)}
+                        className={` w-[80px] h-[40px] fs-[17px] leading-[24px] rounded-lg ${
+                          tab===item
+                            ? "bg-[#16a34a] text-white"
+                            : " hover:text-[#16a34a] "
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    );
+                  })}
                 </div>
                 <div className="w-[100%] lg:w-[100%] bg-white dark:bg-slate-900 h-fit rounded-b-xl rounded-tr-xl px-6 py-4">
                   <div className="flex border-2 border-slate-200  dark:border-slate-600 rounded-full w-full  h-[45px] justify-between items-center dark-bg-slate-900">
@@ -113,7 +74,6 @@ const Home = ({properties}) => {
                   </div>
                 </div>
               </div>
-                  
             </div>
             <div className="  basis-5/12 my-10 mx-2 lg:mx-3">
               <div className=" relative w-fit z-0 lg:h-[90%]">
@@ -141,7 +101,7 @@ const Home = ({properties}) => {
               height="315"
               src={`${
                 showHomeIframe
-                  ?"https://www.youtube.com/embed/yba7hPeTSjk"
+                  ? "https://www.youtube.com/embed/yba7hPeTSjk"
                   : ""
               }`}
               title="YouTube video player"
@@ -194,8 +154,8 @@ const Home = ({properties}) => {
                   Hously is Real Estate Redefined.
                 </p>
                 <button className="btn flex-center-center gap-2 px-7 py-2 mt-6">
-                Learn More
-              </button>
+                  Learn More
+                </button>
               </div>
             </div>
           </div>
@@ -229,7 +189,7 @@ const Home = ({properties}) => {
         {/* Efficiency Section End*/}
 
         {/* How is work Section Start*/}
-          <HowItWorks/>
+        <HowItWorks />
         {/* How is work Section End*/}
 
         {/* Feature property Section Start*/}
@@ -255,7 +215,7 @@ const Home = ({properties}) => {
 
         {/* Questions Section Start*/}
         <div className=" pb-16 md:pb-24">
-          <GetInTouch/>
+          <GetInTouch />
         </div>
         {/* Questions Section End*/}
       </div>

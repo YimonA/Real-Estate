@@ -2,29 +2,26 @@ import React, { useState } from "react";
 import {MdOutlineKeyboardArrowUp,MdOutlineKeyboardArrowDown} from "react-icons/md"
 
 const FaqComponent = () => {
+  const answer= "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.";
   const [faqLists, setFaqLists] = useState([
     {
       id: 1,
       que: "How does it work?",
-      ans: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.",
       showAns: true,
     },
     {
       id: 2,
       que: "Do I need a designer to use Hously?",
-      ans: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.",
       showAns: false,
     },
     {
       id: 3,
       que: "What do I need to do start selling?",
-      ans: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.",
       showAns: false,
     },
     {
       id: 4,
       que: "What happens when I recieve an order?",
-      ans: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.",
       showAns: false,
     },
   ]);
@@ -68,7 +65,7 @@ const FaqComponent = () => {
             </h2>
             <div className="">
               {faqList.showAns && (
-                <p className="text-slate-400 p-5">{faqList.ans}</p>
+                <p className="text-slate-400 p-5">{answer}</p>
               )}
             </div>
           </div>

@@ -61,7 +61,6 @@ const Signup = () => {
 
               <Link to="/forgetPW">
                 <span className=" text-[#16a34a] ml-2">
-                  {" "}
                   Terms and Conditions
                 </span>
               </Link>

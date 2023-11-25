@@ -3,37 +3,38 @@ import { BsTelephone } from "react-icons/bs";
 import FaqComponent from "../Components/FaqComponent";
 import { Link } from "react-router-dom";
 
-
 const Faqs = () => {
-  const [links,setLinks]=useState(
-    [
-      {
-        id:1,
-        linkName:"Buying Questions",
-        goLink:"#buying-questions",
-        isActive:false
-      },
-      {
-        id:2,
-        linkName:"General Questions",
-        goLink:"#general-questions",
-        isActive:false
-      },
-      {
-        id:3,
-        linkName:"Payments Questions",
-        goLink:"#payment-questions",
-        isActive:false
-      },
-      {
-        id:4,
-        linkName:"Support Questions",
-        goLink:"#support-questions",
-        isActive:false
-      }
-    ]
-  )
- 
+  const [links, setLinks] = useState([
+    {
+      id: 1,
+      idUrl: "buying-questions",
+      linkName: "Buying Questions",
+      goLink: "#buying-questions",
+      isActive: false,
+    },
+    {
+      id: 2,
+      idUrl: "general-questions",
+      linkName: "General Questions",
+      goLink: "#general-questions",
+      isActive: false,
+    },
+    {
+      id: 3,
+      idUrl: "payment-questions",
+      linkName: "Payments Questions",
+      goLink: "#payment-questions",
+      isActive: false,
+    },
+    {
+      id: 4,
+      idUrl: "support-questions",
+      linkName: "Support Questions",
+      goLink: "#support-questions",
+      isActive: false,
+    },
+  ]);
+
   const activeLink = (id) => {
     setLinks(
       links.map((link) => {
@@ -47,12 +48,12 @@ const Faqs = () => {
     );
   };
 
-  const scrollYHandler=()=>{
-    window.scroll(0,0);
-  }
-    
+  const scrollYHandler = () => {
+    window.scroll(0, 0);
+  };
+
   return (
-    <div className=' dark:bg-slate-900 mt-[70px]'>
+    <div className=" dark:bg-slate-900 mt-[70px]">
       <div className="relative bgTop table w-full py-32 lg:py-36 bg-no-repeat bg-center bg-cover ">
         <div className="absolute inset-0 bg-slate-900 opacity-80"></div>
         <div className="container mx-auto px-4">
@@ -68,84 +69,73 @@ const Faqs = () => {
           <div className="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
             <div className="lg:col-span-4 md:col-span-5">
               <div className="rounded-md shadow  p-6 sticky top-20  dark:text-white dark:shadow-gray-700">
-                <ul
-                  className="list-unstyled sidebar-nav mb-0 py-0"
-                >
-                  {links?.map((link)=>{
-                    return(
-                      <li key={link.id} className="navbar-item p-0 mt-3 hover:text-green-600">
+                <ul className="list-unstyled sidebar-nav mb-0 py-0">
+                  {links?.map((link) => {
+                    return (
                       <a
-                     href={link.goLink}
-                     onClick={()=>activeLink(link.id)}
-                     className={link.isActive ? "text-base font-medium text-green-600":"text-base font-medium"}>
-                      {link.linkName}
-                    </a>
-                      </li>
-                    )
+                        href={link.goLink}
+                        key={link.id}
+                        onClick={() => activeLink(link.id)}
+                        className={`${
+                          link.isActive
+                            ? "text-base font-medium text-green-600"
+                            : "text-base font-medium"
+                        }`}
+                      >
+                        <li className="navbar-item p-0 mt-3 hover:text-green-600">
+                          {link.linkName}
+                        </li>
+                      </a>
+                    );
                   })}
-                  {/* <li className="navbar-item p-0">
-                    <a
-                      href="#buying-questions"
-                      onClick={()=>setIsActive(true)}
-                      className={isActive? "text-base font-medium text-green-700 ":"text-base font-medium navbar-link"} 
-                    >
-                      Buying Questions
-                    </a>
-                  </li>
-                  <li className="navbar-item mt-3 p-0">
-                    <a
-                    href="#general-questions"
-                    onClick={()=>setIsActive(true)}
-                      className={isActive? "text-base font-medium text-green-700 ":"text-base font-medium navbar-link"}
-                    >
-                      General Questions
-                    </a>
-                  </li>
-                  <li className="navbar-item mt-3 p-0">
-                    <a
-                      href="#payment-questions"
-                      onClick={()=>setIsActive(true)}
-                      className={isActive? "text-base font-medium text-green-700 ":"text-base font-medium navbar-link"}
-                    >
-                      Payments Questions
-                    </a>
-                  </li>
-                  <li className="navbar-item mt-3 p-0">
-                    <a
-                     href="#support-questions"
-                     onClick={()=>setIsActive(true)}
-                     className={isActive? "text-base font-medium text-green-700 ":"text-base font-medium navbar-link"}                    >
-                      Support Questions
-                    </a>
-                  </li> */}
                 </ul>
               </div>
             </div>
-            <div className="lg:col-span-8 md:col-span-7">
-              <div id="buying-questions " className=" ">
-                <h5 className="text-2xl font-semibold dark:text-white dark:bg-slate-900">Buying Product</h5>
+            <div className="lg:col-span-8 md:col-span-7 flex flex-col gap-8">
+              {links.map((link) => {
+                return (
+                  <div id={link.idUrl} key={link.id} className=" ">
+                    <h5 className="text-2xl font-semibold dark:text-white dark:bg-slate-900">
+                      {link.linkName}
+                    </h5>
+                    <div className="mt-6">
+                      <FaqComponent />
+                    </div>
+                  </div>
+                );
+              })}
+              {/* <div id="buying-questions" className=" ">
+                <h5 className="text-2xl font-semibold dark:text-white dark:bg-slate-900">
+                  Buying Product
+                </h5>
                 <div className="mt-6">
                   <FaqComponent />
                 </div>
               </div>
               <div id="general-questions" className="mt-8 ">
-                <h5 className="text-2xl font-semibold dark:text-white">General Questions</h5>
+                <h5 className="text-2xl font-semibold dark:text-white">
+                  General Questions
+                </h5>
                 <div className="mt-6">
                   <FaqComponent />
                 </div>
               </div>
               <div id="payment-questions" className="mt-8 ">
-                <h5 className="text-2xl font-semibold dark:text-white">Payments Questions</h5>
+                <h5 className="text-2xl font-semibold dark:text-white">
+                  Payments Questions
+                </h5>
                 <div className="mt-6">
                   <FaqComponent />
                 </div>
               </div>
               <div id="support-questions" className="mt-8 ">
-                <h5 className="text-2xl font-semibold dark:text-white">Support Questions</h5>
+                <h5 className="text-2xl font-semibold dark:text-white">
+                  Support Questions
+                </h5>
                 <div className="mt-6">
                   <FaqComponent />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -168,7 +158,7 @@ const Faqs = () => {
                     <BsTelephone className=" font-semibold align-middle mt-[2px] " />
                   </i>
                   <Link to={"/contact"} onClick={scrollYHandler}>
-                  <span className="font-semibold">Contact us</span>
+                    <span className="font-semibold">Contact us</span>
                   </Link>
                 </span>
               </button>

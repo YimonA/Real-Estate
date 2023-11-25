@@ -66,7 +66,7 @@ const ListSideBar = ({ properties }) => {
                         <select
                           name=""
                           id=""
-                          className="form-box-2 mt-2 block appearance-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                          className="form-box-2 mt-2 block appearance-none dark:border-slate-800 dark:bg-slate-900 dark:text-white focus:border-none focus:outline-none"
                         >
                           <option value="">Residential</option>
                           <option value="">Land</option>
@@ -84,7 +84,7 @@ const ListSideBar = ({ properties }) => {
                         <select
                           name=""
                           id=""
-                          className="form-box-2 mt-2 block appearance-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                          className="form-box-2 mt-2 block appearance-none dark:border-slate-800 dark:bg-slate-900 dark:text-white focus:border-none focus:outline-none"
                         >
                           <option value="">New York</option>
                           <option value="">North Carolina</option>
