@@ -10,6 +10,16 @@ import { Link } from "react-router-dom";
 
 const FeatureProperties = ({ properties }) => {
   const [heartFill, setHeartFill] = useState(false);
+  const [iconId, setIconId] = useState();
+
+  const heartIconHandler=(id)=>{
+    if(iconId===id){
+      setHeartFill(!heartFill);
+    }else{
+      setIconId(id)
+    }
+
+  }
   return (
     <div className="container-2xl mt-16 lg:mt-24 dark:bg-slate-900">
       <div className="flex-center-center flex-col pb-8">
@@ -21,7 +31,7 @@ const FeatureProperties = ({ properties }) => {
       </div>
       {/* cards */}
       <div className="grid-layout-3 mt-8">
-        {properties.map((property) => {
+        {properties.map((property, index) => {
           return (
             /* card */
             <div
@@ -36,15 +46,9 @@ const FeatureProperties = ({ properties }) => {
                 />
                 <div className="absolute top-4 end-4">
                   <div className=" w-10 h-10 bg-white rounded-full cursor-pointer flex-center-center dark:bg-slate-900 dark:shadow-gray-700">
-                    <button onClick={() => setHeartFill(!heartFill)}>
-                      {heartFill ? (
-                        <RxHeartFilled size={20} className=" text-red-600  " />
-                      ) : (
-                        <RxHeartFilled
-                          size={20}
-                          className="text-slate-100 hover:text-red-600 dark:text-slate-700 dark:hover:text-red-700"
-                        />
-                      )}
+                    <button onClick={() => heartIconHandler(Number(property.id))}>
+                        <RxHeartFilled size={20} className={`${(heartFill && iconId === index+1)? 'text-red-600':'text-slate-100 hover:text-red-600 dark:text-slate-700 dark:hover:text-red-700'}   `} />
+                     
                     </button>
                   </div>
                 </div>
@@ -52,11 +56,11 @@ const FeatureProperties = ({ properties }) => {
 
               <div className="p-6">
                 <div className="mb-6">
-                <Link to={`/detail/${property.id}`}>
-                  <h2 className="h2 cursor-pointer hover:text-green-600 duration-500 ease-in-out inline-block  dark:text-white">
-                    {property.title}
-                  </h2>
-                </Link>
+                  <Link to={`/detail/${property.id}`}>
+                    <h2 className="h2 cursor-pointer hover:text-green-600 duration-500 ease-in-out inline-block  dark:text-white">
+                      {property.title}
+                    </h2>
+                  </Link>
                 </div>
                 <div className="border-y border-slate-100 dark:border-gray-800 py-6 mb-6">
                   <div className="flex-between-center">
@@ -86,7 +90,9 @@ const FeatureProperties = ({ properties }) => {
                       {[...Array(5)].map((x, i) => (
                         <BsStarFill key={i} className="text-amber-400" />
                       ))}
-                      <p className="text-black font mt-1  dark:text-white">5(30)</p>
+                      <p className="text-black font mt-1  dark:text-white">
+                        5(30)
+                      </p>
                     </div>
                   </div>
                 </div>

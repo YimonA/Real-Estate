@@ -10,7 +10,16 @@ import { Link } from "react-router-dom";
 
 const ListSideBar = ({ properties }) => {
   const [heartFill, setHeartFill] = useState(false);
+  const [iconId, setIconId] = useState();
 
+  const heartIconHandler=(id)=>{
+    if(iconId===id){
+      setHeartFill(!heartFill);
+    }else{
+      setIconId(id)
+    }
+
+  }
   return (
     <>
       <div className=" mb-40">
@@ -104,7 +113,7 @@ const ListSideBar = ({ properties }) => {
               <div className="md:col-span-7 lg:col-span-8">
                 <div className="grid-layout-1">
                   {/* cards */}
-                  {properties.map((property) => {
+                  {properties.map((property,index) => {
                     return (
                       /* card */
                       <div
@@ -120,15 +129,9 @@ const ListSideBar = ({ properties }) => {
                             />
                             <div className="absolute top-4 end-4">
                               <div className=" w-10 h-10 bg-white rounded-full cursor-pointer flex-center-center dark:bg-slate-900 dark:shadow-gray-700">
-                              <button onClick={() => setHeartFill(!heartFill)}>
-                      {heartFill ? (
-                        <RxHeartFilled size={20} className=" text-red-600  " />
-                      ) : (
-                        <RxHeartFilled
-                          size={20}
-                          className="text-slate-100 hover:text-red-600 dark:text-slate-700 dark:hover:text-red-700"
-                        />
-                      )}
+                              <button onClick={() => heartIconHandler(Number(property.id))}>
+                        <RxHeartFilled size={20} className={`${(heartFill && iconId === index+1)? 'text-red-600':'text-slate-100 hover:text-red-600 dark:text-slate-700 dark:hover:text-red-700'}   `} />
+                     
                     </button>
                               </div>
                             </div>

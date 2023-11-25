@@ -1,8 +1,14 @@
 import React from "react";
 import "../index.css";
 import { Link } from "react-router-dom";
+import {BsFillEyeSlashFill} from 'react-icons/bs'
+import {BsEyeFill} from 'react-icons/bs'
+import { useState } from "react";
+
 
 const Login = () => {
+  const [showPW,setShowPW]=useState(false);
+
   return (
     <div className=" container-fluid snow-bg myParent duration-[40000ms]">
       <div className="z-1 relative w-screen h-screen overflow-hidden">
@@ -26,19 +32,23 @@ const Login = () => {
             <input
               defaultValue={"john@gmail.com"}
               type="text"
-              placeholder="name@example.com"
               className=" px-3 py-2 w-full border-2 mb-3 myBorderColor"
             />
             </div>
             <div className="mb-3 flex flex-col gap-3">
 
             <label className=" font-medium">Password:</label>
+            <div className=" px-3 py-2 w-full border-2 mb-3 myBorderColor flex justify-between items-center">
+
             <input
               defaultValue={"john123"}
-              type="text"
-              placeholder="Password"
-              className=" px-3 py-2 w-full border-2 mb-3 myBorderColor"
+              type={showPW? 'text' :'password' }
+              className=" "
             />
+            {showPW? <BsFillEyeSlashFill onClick={()=>setShowPW(false)}/>: <BsEyeFill onClick={()=>setShowPW(true)}/>}
+            
+            </div>
+
             </div>
             
             <div className=" flex justify-between items-center mb-3">
