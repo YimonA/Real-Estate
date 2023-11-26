@@ -16,13 +16,13 @@ const ImagesModal = (props) => {
 
   return (
     <div className="container-fluid">
-      <div className=" md:flex">
-        <div className="md:w-1/2 lg:w-1/2 p-1">
+      <div className=" md:flex md:items-stretch">
+        <div className="md:basis-1/2 p-1">
           <div className="group relative overflow-hidden">
             <img
-              className="w-full md:h-[300px] lg:h-[646px] "
+              className="w-full md:h-[300px] lg:h-[655px] object-cover object-center"
               src={item.image}
-              alt=""
+              alt="" 
             />{" "}
             {/* max-h-[620px] */}
             <div className="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
@@ -35,93 +35,85 @@ const ImagesModal = (props) => {
                     item.image.slice(47, 67)
                   )
                 }
-                className=" w-full bg-green-600 text-center ps-3 pe-7 py-3  hover:bg-green-700 text-white rounded-full lightbox"
+                className="w-10 h-10 rounded-full flex justify-center items-center bg-green-600 text-center hover:bg-green-700 text-white lightbox"
               >
-                <FiCamera className="text-center " />
+                <FiCamera size={'1.1rem'} />
               </button>
             </div>
           </div>
         </div>
-        <div className=" md:w-1/2 lg:w-1/2">
-          <div className=" flex   ">
-            <div className="w-1/2 p-1">
-              <div className="  group relative overflow-hidden">
+        <div className="md:basis-1/2 flex flex-col">
+          <div className=" basis-1/2 flex   ">
+              <div className="basis-1/2 p-1 group relative overflow-hidden">
                 <img
-                  className=""
-                  src="https://hously-react.vercel.app/static/media/2.270944ce288edc7e8dce.jpg"
+                  className="w-full md:h-[150px] lg:h-[323px] object-cover object-center"
+                  src="https://hously-react.vercel.app/static/media/2.270944ce288edc7e8dce.jpg "
                   alt=""
                 />
                 <div className="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
-                <div className="absolute top-1/2 -translate-y-1/2 start-1/2 end-1/2 text-center invisible group-hover:visible">
+                <div className="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 text-center invisible group-hover:visible">
                   <button
                     id="btn"
                     onClick={() => toggleModal("2", "270944ce288edc7e8dce")}
-                    className=" w-full bg-green-600 text-center ps-3 pe-7 py-3  hover:bg-green-700 text-white rounded-full lightbox"
+                    className="w-10 h-10 rounded-full flex justify-center items-center bg-green-600 text-center hover:bg-green-700 text-white lightbox"
                   >
-                    <FiCamera className="text-center " />
+                    <FiCamera size={'1.1rem'} />
                   </button>
                 </div>
               </div>
-            </div>
-            <div className="w-1/2 p-1">
-              <div className="  group relative overflow-hidden">
+              <div className="basis-1/2 p-1 group relative overflow-hidden">
                 <img
-                  className=""
+                  className="w-full md:h-[150px] lg:h-[323px] object-cover object-center"
                   src="https://hously-react.vercel.app/static/media/3.c00def8851920add8615.jpg"
                   alt=""
                 />
                 <div className="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
-                <div className="absolute top-1/2 -translate-y-1/2 start-1/2 end-1/2 text-center invisible group-hover:visible">
+                <div className="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 text-center invisible group-hover:visible">
                   <button
                     id="btn"
                     onClick={() => toggleModal("3", "c00def8851920add8615")}
-                    className=" w-full bg-green-600 text-center ps-3 pe-7 py-3  hover:bg-green-700 text-white rounded-full lightbox"
+                    className="w-10 h-10 rounded-full flex justify-center items-center bg-green-600 text-center hover:bg-green-700 text-white lightbox"
                   >
-                    <FiCamera className="text-center " />
+                    <FiCamera size={'1.1rem'} />
                   </button>
                 </div>
               </div>
-            </div>
           </div>
-          <div className=" flex ">
-            <div className="w-1/2 p-1">
-              <div className="  group relative overflow-hidden">
+          <div className=" basis-1/2 flex ">
+              <div className="basis-1/2 p-1 group relative overflow-hidden">
                 <img
-                  className=""
+                  className="w-full md:h-[150px] lg:h-[323px] object-cover object-center"
                   src="https://hously-react.vercel.app/static/media/4.939a280581f228ba8f6c.jpg"
                   alt=""
                 />
                 <div className="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
-                <div className="absolute top-1/2 -translate-y-1/2 start-1/2 end-1/2 text-center invisible group-hover:visible">
+                <div className="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 text-center invisible group-hover:visible">
                   <button
                     id="btn"
                     onClick={() => toggleModal("4", "939a280581f228ba8f6c")}
-                    className=" w-full bg-green-600 text-center ps-3 pe-7 py-3  hover:bg-green-700 text-white rounded-full lightbox"
+                    className=" w-10 h-10 rounded-full flex justify-center items-center bg-green-600 text-center hover:bg-green-700 text-white lightbox"
                   >
-                    <FiCamera className="text-center " />
+                    <FiCamera size={'1.1rem'} />
                   </button>
                 </div>
               </div>
-            </div>
-            <div className="w-1/2 p-1">
-              <div className="  group relative overflow-hidden">
+              <div className="basis-1/2 p-1 group relative overflow-hidden">
                 <img
-                  className=""
+                  className="w-full md:h-[150px] lg:h-[323px] object-cover object-center"
                   src="https://hously-react.vercel.app/static/media/5.ff80099f4a4308516e24.jpg"
                   alt=""
                 />
                 <div className="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
-                <div className="absolute top-1/2 -translate-y-1/2 start-1/2 end-1/2 text-center invisible group-hover:visible">
+                <div className="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 text-center invisible group-hover:visible">
                   <button
                     id="btn"
                     onClick={() => toggleModal("5", "ff80099f4a4308516e24")}
-                    className=" w-full bg-green-600 text-center ps-3 pe-7 py-3  hover:bg-green-700 text-white rounded-full lightbox"
+                    className="w-10 h-10 rounded-full flex justify-center items-center bg-green-600 text-center hover:bg-green-700 text-white lightbox"
                   >
-                    <FiCamera className="text-center " />
+                    <FiCamera size={'1.1rem'} />
                   </button>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -136,7 +128,7 @@ const ImagesModal = (props) => {
         }
       >
         <a
-          className="fixed z-90 top-[240px] lg:top-16 right-8 lg:right-[280px] text-white text-5xl font-bold"
+          className="fixed z-90 top-[200px] lg:top-6 right-2 lg:right-[280px] text-white text-5xl font-bold"
           onClick={() => setShowModal(false)}
         >
           <RxCross2 />
