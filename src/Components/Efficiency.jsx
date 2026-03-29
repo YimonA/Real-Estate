@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
 import { BsPlayFill } from "react-icons/bs";
-
 const Efficiency = () => {
   return (
     <div className=" container mx-auto flex justify-between items-center my-10 lg:my-20">
@@ -9,7 +8,7 @@ const Efficiency = () => {
         <div className=" relative ">
           <img
             className=" rounded-xl w-[350px] h-[400px] lg:w-[500px] lg:h-[550px]"
-            src="	https://hously-react.vercel.app/static/media/about.f67dcc77d84a6e14d5de.jpg"
+            src="	/images/house-7.avif"
             alt=""
           />
           <div className=" absolute z-10 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center item-end w-[70px] h-[70px] border-2 rounded-full changeLight">

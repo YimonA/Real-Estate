@@ -122,7 +122,7 @@ html{
 /* 'background-image: url("/static/media/01.22de4da0428b035e9d2b.jpg");' */
 
 .bgTop {
-  background-image: url("https://hously-react.vercel.app/static/media/01.22de4da0428b035e9d2b.jpg");
+  background-image: url("/images/house-12.avif");
   clip-path: polygon(
     0 0,
     100% 0,

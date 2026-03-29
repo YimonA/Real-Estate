@@ -45,9 +45,9 @@ const Home = ({ properties }) => {
                   {tabName.map((item, index) => {
                     return (
                       <button
-                        onClick={()=>setTab(item)}
+                        onClick={() => setTab(item)}
                         className={` w-[80px] h-[40px] fs-[17px] leading-[24px] rounded-lg ${
-                          tab===item
+                          tab === item
                             ? "bg-[#16a34a] text-white"
                             : " hover:text-[#16a34a] "
                         }`}
@@ -78,7 +78,7 @@ const Home = ({ properties }) => {
             <div className="  basis-5/12 my-10 mx-2 lg:mx-3">
               <div className=" relative w-fit z-0 lg:h-[90%]">
                 <img
-                  src="https://hously-react.vercel.app/static/media/1.bfd273967d5b93df7a02.jpg"
+                  src="/images/house-6.avif"
                   alt=""
                   className=" border-[15px] rounded-t-full border-white dark:border-black lg:w-[500px]  h-[600px] object-cover object-center  " /* md:h-[600px] h-[440px] */
                 />
@@ -127,7 +127,7 @@ const Home = ({ properties }) => {
               <div className=" relative ">
                 <img
                   className=" rounded-xl w-full h-[400px] lg:h-[550px]"
-                  src="	https://hously-react.vercel.app/static/media/about.f67dcc77d84a6e14d5de.jpg"
+                  src="/images/house-7.avif"
                   alt=""
                 />
                 <div
@@ -185,7 +185,6 @@ const Home = ({ properties }) => {
             </button>
           </div>
         </div>
-
         {/* Efficiency Section End*/}
 
         {/* How is work Section Start*/}

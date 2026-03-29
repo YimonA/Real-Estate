@@ -22,7 +22,7 @@ const Contact = () => {
           <div className="grid-layout-2 items-center mt-8">
             <div className="md:col-span-6 lg:col-span-7">
               <img
-                src="https://hously-react.vercel.app/static/media/contact.9a5ddc68f4f732b0d302408faa525a9d.svg"
+                src="/images/house-11.avif"
                 alt=""
               />
             </div>

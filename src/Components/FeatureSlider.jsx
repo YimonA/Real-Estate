@@ -9,28 +9,28 @@ const FeatureSlider = () => {
   const slides = [
     {
       id: 1,
-      img: "https://hously-react.vercel.app/static/media/01.6ac85de7298319b1f8d5.jpg",
+      img: "/images/house-1.avif",
       personName: "Calvin Carlo",
       job: "Manager",
       text: " Hously made the processes so easy. Hously instantly increased the amount of interest and ultimately saved us over $10,000.",
     },
     {
       id: 2,
-      img: "https://hously-react.vercel.app/static/media/04.35463172278c4051b5f4.jpg",
+      img: "/images/house-2.avif",
       personName: "Christa Smith",
       job: "Manager",
       text: " Great experience all around! Easy to use and efficient. ",
     },
     {
       id: 3,
-      img: "https://hously-react.vercel.app/static/media/02.7df14e12e444ad660802.jpg",
+      img: "/images/house-3.avif",
       personName: "Christina Jalk",
       job: "Manager",
       text: " I highly recommend Hously as the new way to sell your home by owner.My home sold in 24 hours for the asking price. Best $400 you could spend to sell your home. ",
     },
     {
       id: 4,
-      img: "https://hously-react.vercel.app/static/media/03.ba5f8794c055cc1488b5.jpg",
+      img: "/images/house-4.avif",
       personName: "Lily June",
       job: "Manager",
       text: " My favorite part about selling my home myself was that we got to meet and get to know the people personally. This made it so much more enjoyable!",

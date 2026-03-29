@@ -12,13 +12,13 @@ const Buy = ({ properties }) => {
   const tabs = [
     {
       id: 1,
-      name: "Pre Approval Letter",img:"https://hously-react.vercel.app/static/media/Agent_Monochromatic.9caa4de69758b93b9bcd106143effd9b.svg",detail:"Most buyers think the first step is finding their dream house, but the truth is finding the funding is the first step. Hously streamlines the Loan Pre-Approval process with our ecosystem of Premier Partners or simply upload your own Pre-Approval letter."
+      name: "Pre Approval Letter",img:"/images/house-1.avif",detail:"Most buyers think the first step is finding their dream house, but the truth is finding the funding is the first step. Hously streamlines the Loan Pre-Approval process with our ecosystem of Premier Partners or simply upload your own Pre-Approval letter."
     },
-    { id: 2, name: "Schedule a Showing",img:"https://hously-react.vercel.app/static/media/presentation_Flatline.2c6c401c6e6cd7dd0d2e75d71fbc266b.svg",detail:"Hously allows a buyer to schedule an instant showing and gain a private viewing without the need for multiple parties to be involved. You pick the time that works for you!" },
-    { id: 3, name: "Submit an Offer",img:"https://hously-react.vercel.app/static/media/session_Flatline.24c0e9d372d3b457165d68fa71f47756.svg",detail:"Hously walks a buyer through the purchase agreement process making the paperwork appear effortless. With our custom workflows and progress analytics, you will always know where your purchase stands. No more phone tag and unreturned emails!" },
-    { id: 4, name: "Property inspection",img:"https://hously-react.vercel.app/static/media/Startup_Flatline.ce512f774b033a648c07e5886a206645.svg",detail:"No one wants to buy a lemon. Book an inspection with a licensed inspector, then submit the repair requests all via the Hously platform." },
-    { id: 5, name: "Appraisal",img:"https://hously-react.vercel.app/static/media/team_Flatline.c0956c9748f22a80354be0e13461c58e.svg",detail:"Hously monitors the appraisal process ensuring the home you are purchasing meets or exceeds the price you are paying." },
-    { id: 6, name: "Closing Deal",img:"https://hously-react.vercel.app/static/media/Team_meeting_Two.91eb9525d3698eab69f682f4a27a6921.svg",detail:"Finally the closing packet is sent to the Title office, and the day has come… You have Hously the home of your dreams!" },
+    { id: 2, name: "Schedule a Showing",img:"/images/house-2.avif",detail:"Hously allows a buyer to schedule an instant showing and gain a private viewing without the need for multiple parties to be involved. You pick the time that works for you!" },
+    { id: 3, name: "Submit an Offer",img:"/images/house-3.avif",detail:"Hously walks a buyer through the purchase agreement process making the paperwork appear effortless. With our custom workflows and progress analytics, you will always know where your purchase stands. No more phone tag and unreturned emails!" },
+    { id: 4, name: "Property inspection",img:"/images/house-4.avif",detail:"No one wants to buy a lemon. Book an inspection with a licensed inspector, then submit the repair requests all via the Hously platform." },
+    { id: 5, name: "Appraisal",img:"/images/house-5.avif",detail:"Hously monitors the appraisal process ensuring the home you are purchasing meets or exceeds the price you are paying." },
+    { id: 6, name: "Closing Deal",img:"/images/house-6.avif",detail:"Finally the closing packet is sent to the Title office, and the day has come… You have Hously the home of your dreams!" },
   ];
 
   return (

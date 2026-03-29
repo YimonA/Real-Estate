@@ -6,7 +6,7 @@ const Signup = () => {
   return (
     <div className=" container-fluid snow-bg myParent duration-[40000ms]">
       <div className="z-1 relative w-screen h-screen overflow-hidden">
-        <div className="myImg absolute w-screen h-screen bg-center bg-cover bg-[url('https://hously-react.vercel.app/static/media/5.289f490cebbaef2f5f58.jpg')]">
+        <div className="myImg absolute w-screen h-screen bg-center bg-cover bg-[url('/images/blurImg.png')]">
         <div className="absolute inset-0 bg-black opacity-30 "></div>
         </div>
 
